@@ -72,24 +72,16 @@
                   return i * 25;
                }) 
             .attr("height", function(d) { return height - y(d.cases_avg); })
-            
+        
     
             
          });
           
-          
-        svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-      .selectAll("text")
-        .attr("y", 0)
-        .attr("x", 9)
-        .attr("dy", ".35em")
-        .attr("transform", "rotate(90)")
-        .style("text-anchor", "start");
-
-                //.attr("transform", function (d) { return "rotate(-30)"; })  
+        svg.selectAll(".xaxis text") // Select all the text elements for the xaxis
+        .attr("transform", function(d) {
+            return "translate(" + height + "," + height + ")rotate(-45)";
+        });
+  
           
          function onMouseOver(d, i) {
             d3.select(this)
