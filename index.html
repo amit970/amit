@@ -5,7 +5,7 @@
     </head>
     
 <body>
-    AAAAAAAAAAA1
+    B
     <svg width = "800" height = "500"></svg>
       <script>
          var svg = d3.select("svg"),
@@ -79,9 +79,7 @@
          });
           
         svg.selectAll(".xaxis text") // Select all the text elements for the xaxis
-        .attr("transform", function(d) {
-            return "translate(" + height + "," + height + ")rotate(-45)";
-        });
+        .attr("transform", function(d) {return "rotate(-45)";});
   
           
          function onMouseOver(d, i) {
