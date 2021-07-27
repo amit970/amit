@@ -84,8 +84,8 @@
 //    .attr("transform", "rotate(90)")
 //    .style("text-anchor", "start");
     
-            g.append("g")
-            .attr("id", "x")
+            svg.append("g")
+            .attr("class", "x axis")
                 .attr("transform", "translate(0," + (height) + ")")              
                 .call(xAxis)
                 .selectAll("text")
