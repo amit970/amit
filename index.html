@@ -5,7 +5,7 @@
     </head>
     
 <body>
-    <svg width = "500" height = "500"></svg>
+    <svg width = "700" height = "500"></svg>
       <script>
          var svg = d3.select("svg"),
          margin = 250, width = svg.attr("width") - margin,
@@ -40,7 +40,7 @@
                .attr("x", width - 100)
                .attr("text-anchor", "end")
                .attr("font-size", "18px")
-               .attr("stroke", "blue").text("date");
+               .attr("stroke", "blue").text("year");
                
             g.append("g")
                .append("text")
