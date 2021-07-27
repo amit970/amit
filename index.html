@@ -40,19 +40,20 @@
                .append("text")
                .attr("y", height - 250)
                .attr("x", width - 100)
-               .attr("text-anchor", "end")
+               //.attr("text-anchor", "end")
                .attr("font-size", "18px")
-               .attr("stroke", "blue").text("year");
+               //.attr("stroke", "blue")
+               .text("Date");
                
             g.append("g")
                .append("text")
                .attr("transform", "rotate(-90)")
                .attr("y", 6)
                .attr("dy", "-5.1em")
-               .attr("text-anchor", "end")
+               //.attr("text-anchor", "end")
                .attr("font-size", "18px")
-               .attr("stroke", "blue")
-               .text("cases_avg");
+               //.attr("stroke", "blue")
+               .text("Average Cases");
                          
             g.append("g")
                .attr("transform", "translate(0, 0)")
@@ -62,7 +63,7 @@
                .data(data)
                .enter()
                .append("rect")
-               .attr("class", "bar")
+               //.attr("class", "bar")
                .on("mouseover", onMouseOver) 
                .on("mouseout", onMouseOut)   
                .attr("x", function(d) { return x(d.date); })            
@@ -86,31 +87,28 @@
           
          function onMouseOver(d, i) {
             d3.select(this)
-            .attr('class', 'highlight');
+            .attr('class', 'highlight')
+            .attr('fill', 'orange');
+              
                
             d3.select(this)
                .transition()     
-               .duration(200)
+               .duration(100)
                .attr('width', x.bandwidth() + 5)
                .attr("y", function(d) { return y(d.cases_avg) - 10; })
                .attr("height", function(d) { return height - y(d.cases_avg) + 10; });
               
             g.append("text")
                .attr('class', 'val')
-               .attr('x', function() {
-                  return x(d.date);
-               })
-               
-            .attr('y', function() {
-               return y(d.value) - 10;
-            })
+               .attr('x', function() {return x(d.date);})
+               .attr('y', function() {return y(d.value) - 10;})
          }
           
          function onMouseOut(d, i) {
              
             d3.select(this)
                .attr('class', 'bar');
-            
+             
             d3.select(this)
                .transition()     
                .duration(200)
