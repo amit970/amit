@@ -84,7 +84,11 @@
 //    .attr("transform", "rotate(90)")
 //    .style("text-anchor", "start");
     
-            g.append("g")
+            
+         });
+          
+          
+        svg.append("g")
             .attr("class", "x axis")
                 .attr("transform", "translate(0," + (height) + ")")              
                 .call(xAxis)
@@ -92,9 +96,8 @@
                 .style("text-anchor", "end")
                 .attr("dx", "-.8em")
                 .attr("dy", ".15em")
-                .attr("transform", function (d) { return "rotate(-30)"; })
-         });
-          
+                .attr("transform", "rotate(90)")
+                //.attr("transform", function (d) { return "rotate(-30)"; })  
           
          function onMouseOver(d, i) {
             d3.select(this)
