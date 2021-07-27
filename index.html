@@ -69,22 +69,19 @@
                .ease(d3.easeLinear).duration(100)
                .delay(function (d, i) {
                   return i * 25;
-               })
+               }) 
+            .attr("height", function(d) { return height - y(d.cases_avg); })
             
-//            svg.append("g") // Add the X Axis
-//            .attr("class", "x axis")
-//            .attr("id", "x")
-//                .attr("transform", "translate(0," + (height) + ")")
-//                .call(xAxis)
-//                .selectAll("text")
-//                .style("text-anchor", "end")
-//                .attr("dx", "-.8em")
-//                .attr("dy", ".15em")
-//                .attr("transform", function (d) {
-//                return "rotate(-30)";
-//            })
-                  
-            .attr("height", function(d) { return height - y(d.cases_avg); });
+                        
+            svg.append("g") // Add the X Axis
+            .attr("class", "x axis")
+            .attr("id", "x")
+                .attr("transform", "translate(0," + (height) + ")")              
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function (d) { return "rotate(-30)"; })
          });
           
           
