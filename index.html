@@ -8,7 +8,7 @@
     <svg width = "500" height = "500"></svg>
       <script>
          var svg = d3.select("svg"),
-         margin = 300, width = svg.attr("width") - margin,
+         margin = 250, width = svg.attr("width") - margin,
          height = svg.attr("height") - margin;
          
          svg.append("text")
@@ -71,18 +71,18 @@
                   return i * 25;
                })
             
-            svg.append("g") // Add the X Axis
-            .attr("class", "x axis")
-            .attr("id", "x")
-                .attr("transform", "translate(0," + (height) + ")")
-                .call(xAxis)
-                .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", ".15em")
-                .attr("transform", function (d) {
-                return "rotate(-30)";
-            })
+//            svg.append("g") // Add the X Axis
+//            .attr("class", "x axis")
+//            .attr("id", "x")
+//                .attr("transform", "translate(0," + (height) + ")")
+//                .call(xAxis)
+//                .selectAll("text")
+//                .style("text-anchor", "end")
+//                .attr("dx", "-.8em")
+//                .attr("dy", ".15em")
+//                .attr("transform", function (d) {
+//                return "rotate(-30)";
+//            })
                   
             .attr("height", function(d) { return height - y(d.population); });
          });
