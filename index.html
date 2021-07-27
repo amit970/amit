@@ -73,14 +73,16 @@
                   return i * 25;
                }) 
             .attr("height", function(d) { return height - y(d.cases_avg); })
+            .selectAll(".xaxis text") // Select all the text elements for the xaxis
+        .attr("transform", function(d) {return "rotate(-45)";});
         
     
             
          });
           
-        svg.selectAll(".xaxis text") // Select all the text elements for the xaxis
-        .attr("transform", function(d) {return "rotate(-45)";});
-  
+//        g.selectAll(".xaxis text") // Select all the text elements for the xaxis
+//        .attr("transform", function(d) {return "rotate(-45)";});
+//  
           
          function onMouseOver(d, i) {
             d3.select(this)
