@@ -8,7 +8,7 @@
     <svg width = "500" height = "500"></svg>
       <script>
          var svg = d3.select("svg"),
-         margin = 200, width = svg.attr("width") - margin,
+         margin = 100, width = svg.attr("width") - margin,
          height = svg.attr("height") - margin;
          
          svg.append("text")
@@ -30,12 +30,13 @@
             }
                
             x.domain(data.map(function(d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.cases_avg_per_100k; })]);
+            y.domain([0, d3.max(data, function(d) { return d.cases_avg; })]);
                      
             g.append("g")
                .attr("transform", "translate(0," + height + ")")
                .call(d3.axisBottom(x))
                .append("text")
+               .attr("transform", "rotate(-90)")
                .attr("y", height - 250)
                .attr("x", width - 100)
                .attr("text-anchor", "end")
