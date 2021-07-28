@@ -1,7 +1,21 @@
 <html>
     <head>
     <script src = "https://d3js.org/d3.v4.min.js"></script>
-        <title>Test - Amit</title>
+    <title>Test - Amit</title>
+    <style>
+   .bar {
+      fill: green;
+   }
+   
+   .highlight {
+      fill: red;
+   }
+   
+   .title {
+      fill: blue;
+      font-weight: bold;
+   }
+</style>
     </head>
     
 <body>
@@ -9,7 +23,7 @@
     <svg id="svg1" width = "800" height = "500"></svg>
     <svg id="svg1" width = "800" height = "500"></svg>
       <script>
-          
+        const dataset = await d3.csv("./us.csv")
         var dataset1 = [
             
             {date:'2020-04-01',cases_avg:20974.14},
@@ -22,7 +36,7 @@
             
         ]  
         
-        const dataset = await d3.csv("./us.csv")
+        
           
          var svg1 = d3.select("#svg1");
          margin = 250; 
