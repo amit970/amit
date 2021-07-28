@@ -21,12 +21,12 @@
 
 <body onload='init()'>
     <svg id="svg1" width="800" height="500"></svg>
-    <svg id="svg1" width="800" height="500"></svg>
+    <svg id="svg2" width="800" height="500"></svg>
     <script>
         async function init() {
             const dataset = await d3.csv("./us.csv")
 
-            var dataset1 = [
+            var dataset2 = [
                 {
                     date: '2020-04-01',
                     cases_avg: 20974.14
@@ -50,6 +50,42 @@
                 {
                     date: '2020-04-06',
                     cases_avg: 29300.29
+                },
+                {
+                    date: '2020-04-07',
+                    cases_avg: 30133.29
+                },
+                {
+                    date: '2020-04-08',
+                    cases_avg: 30831.86
+                },
+                {
+                    date: '2020-04-09',
+                    cases_avg: 31543.57
+                },
+                {
+                    date: '2020-04-10',
+                    cases_avg: 31708.57
+                },
+                {
+                    date: '2020-04-11',
+                    cases_avg: 31225.86
+                },
+                {
+                    date: '2020-04-12',
+                    cases_avg: 31444
+                },
+                {
+                    date: '2020-04-13',
+                    cases_avg: 30708.71
+                },
+                {
+                    date: '2020-04-14',
+                    cases_avg: 30187.86
+                },
+                {
+                    date: '2020-04-15',
+                    cases_avg: 29932.57
                 },
         ]
 
@@ -81,7 +117,7 @@
             g.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x))
-            
+
             g.append("g")
                 .append("text")
                 .attr("y", height + 50)
@@ -94,8 +130,8 @@
             g.append("g")
                 .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("x",-150)
-                .attr("y", 6)
+                .attr("x", -170)
+                .attr("y", 35)
                 .attr("dy", "-5.1em")
                 //.attr("text-anchor", "end")
                 .attr("font-size", "18px")
@@ -156,9 +192,12 @@
                 console.log("Cases are:" + x(d.date));
                 svg1.append('text')
                     .attr('class', 'val')
-                    .attr('x', x(d.date) + 100)
-                    .attr('y', y(d.cases_avg) +80)
-                    .text(d.cases_avg)
+                //.attr("transform", "translate("+100+"," + 0+") rotate(-45)")
+                    .attr('x', x(d.date)+80)
+                    .attr('y', y(d.cases_avg)+80)
+                
+                    .text(d.cases_avg);
+                
             }
 
             function onMouseOut(d, i) {
