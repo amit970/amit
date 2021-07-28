@@ -23,10 +23,10 @@
     <svg id="svg1" width = "800" height = "500"></svg>
     <svg id="svg1" width = "800" height = "500"></svg>
       <script>
-          var dataset;
+          
           async function init() {
-               dataset = await d3.csv("./us.csv")
-          }
+               const dataset = await d3.csv("./us.csv")
+          
         
         var dataset1 = [
             
@@ -173,7 +173,7 @@
             console.log("Selected:"+i);
             selectedIndex_svg1 = i
         }  
-          
+          }
           
       </script>
     
