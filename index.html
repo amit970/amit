@@ -1,6 +1,6 @@
 <html>
     <head>
-    <script src = "https://d3js.org/d3.v4.min.js"></script>
+    <script src = "https://d3js.org/d3.v5.min.js"></script>
     <title>Test - Amit</title>
     <style>
    .bar {
@@ -18,12 +18,16 @@
 </style>
     </head>
     
-<body>
+<body onload='init()'>
     B
     <svg id="svg1" width = "800" height = "500"></svg>
     <svg id="svg1" width = "800" height = "500"></svg>
       <script>
-        const dataset = d3.csv("./us.csv")
+          var dataset;
+          async function init() {
+               dataset = await d3.csv("./us.csv")
+          }
+        
         var dataset1 = [
             
             {date:'2020-04-01',cases_avg:20974.14},
