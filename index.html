@@ -141,7 +141,7 @@
         ]
             var svg1 = d3.select("#svg1");
             margin = 250;
-            width = svg1.attr("width") - margin;
+            width = svg1.attr("width") - 100;
             height = svg1.attr("height") - margin;
 
             svg1.append("text")
@@ -311,7 +311,7 @@
             //const dataset1 = d3.csv("./us-states.csv")
             var svg1 = d3.select("#svg2");
          svg1.html("");
-            margin = 250;
+            margin = 100;
             width = svg1.attr("width") - margin;
             height = svg1.attr("height") - margin;
 
@@ -355,8 +355,6 @@
             g.append("g")
                 .append("text")
                 .attr("transform", "translate(-50,"+(height -20)+") rotate(-90)")
-                //.attr("x", -100)
-                //.attr("y", 85)
                 //.attr("dy", "-5.1em")
                 //.attr("text-anchor", "end")
                 .attr("font-size", "18px")
@@ -454,6 +452,7 @@
                 console.log("Selected:" + i);
                 selectedIndex_svg1 = i
                 console.log(dataset2[i])
+                chart3(d.date, d.state)
             }
         }
         
@@ -463,8 +462,8 @@
         
         function chart3(selectedDate, selectedState) {
             //const dataset1 = d3.csv("./us-states.csv")
-            var svg1 = d3.select("#svg2");
-         svg1.html("");
+            var svg1 = d3.select("#svg3");
+            svg1.html("");
             margin = 250;
             width = svg1.attr("width") - margin;
             height = svg1.attr("height") - margin;
