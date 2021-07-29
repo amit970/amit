@@ -141,9 +141,9 @@
         ]
             
               var subgroups = dataset1.columns.slice(1)
-              console.logs(subgroups)
+              console.log(subgroups)
               var groups = d3.map(dataset1, function(d){return(d.date)}).keys()
-              console.logs(groups)
+              console.log(groups)
               var svg1 = d3.select("#svg1");
             margin = 250;
             width = svg1.attr("width") - margin;
