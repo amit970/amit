@@ -140,10 +140,6 @@
                 },
         ]
             
-              var subgroups = dataset1.columns.slice(1)
-              console.log(subgroups)
-              var groups = d3.map(dataset1, function(d){return(d.date)}).keys()
-              console.log(groups)
               var svg1 = d3.select("#svg1");
             margin = 250;
             width = svg1.attr("width") - margin;
@@ -462,7 +458,7 @@
                 .attr("x", 150).attr("y", 50)
                 .attr("font-size", "20px")
                 .attr("class", "title")
-                .text("Average Cases in US States on " + selectedDate)
+                .text("Average Cases for US State: " + selectedState)
 
             var x = d3.scaleBand().range([0, width]).padding(0.4),
                 y = d3.scaleLinear().range([height, 0]);
@@ -471,7 +467,7 @@
                 .attr("transform", "translate(100,100)");
 
             x.domain(dataset2.map(function (d) {
-                return d.state;
+                return d.date;
             }));
             y.domain([0, d3.max(dataset2, function (d) {
                 return d.cases;
@@ -482,7 +478,7 @@
                 .call(d3.axisBottom(x))
             .selectAll("text")
             .attr("dy", ".35em")
-            .attr("transform", "translate(-30,20) rotate(-45)")
+            .attr("transform", "translate(-30,40) rotate(-45)")
             .style("text-anchor", "start");
 
             g.append("g")
@@ -492,7 +488,7 @@
                 //.attr("text-anchor", "end")
                 .attr("font-size", "18px")
                 //.attr("stroke", "black")
-                .text("US States");
+                .text("Date");
 
             g.append("g")
                 .append("text")
@@ -503,7 +499,7 @@
                 //.attr("text-anchor", "end")
                 .attr("font-size", "18px")
                 //.attr("stroke", "blue")
-                .text("Average Cases by US States");
+                .text("Average Cases");
 
             g.append("g")
                 .attr("transform", "translate(0, 0)")
@@ -513,13 +509,13 @@
                 .data(dataset2)
                 .enter()
                 .append("rect")
-                .filter(function(d) { return d.date == selectedDate })
+                .filter(function(d) { return (d.state == selectedState) })
                 .attr("class", "bar")
                 .on("mouseover", onMouseOver)
                 .on("mouseout", onMouseOut)
                 .on("click", onMouseClick)
                 .attr("x", function (d) {
-                    return x(d.state);
+                    return x(d.date);
                 })
                 .attr("y", function (d) {
                     return y(d.cases);
@@ -557,11 +553,11 @@
                         return height - y(d.cases) + 10;
                     });
 
-                console.log("Cases are:" + x(d.state));
+                console.log("Cases are:" + x(d.date));
                 svg1.append('text')
                     .attr('class', 'val')
                 //.attr("transform", "translate("+100+"," + 0+") rotate(-45)")
-                    .attr('x', x(d.state)+80)
+                    .attr('x', x(d.date)+80)
                     .attr('y', y(d.cases)+80)
                 
                     .text(d.cases);
@@ -592,7 +588,7 @@
 
             function onMouseClick(d, i) {
                 console.log("Selected:" + d.cases);
-                console.log("Selected:" + d.state);
+                console.log("Selected:" + d.date);
                 console.log("Selected:" + i);
                 selectedIndex_svg1 = i
                 console.log(dataset2[i])
