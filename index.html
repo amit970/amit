@@ -105,10 +105,10 @@
         var dataset1;
         var dataset2;
         async function init() {
-            dataset1 = await d3.csv("./us.csv")
-            dataset2 = await d3.csv("./us-states.csv")
+            //dataset1 = await d3.csv("./us.csv")
+            //dataset2 = await d3.csv("./us-states.csv")
             
-             dataset11 = [
+             dataset1 = [
                 {
                     date: '2020-04-01',
                     cases: 20974.14
@@ -170,7 +170,7 @@
                     cases: 29932.57
                 },
         ]
-              dataset22 = [
+              dataset2 = [
                 {
                     date: '2020-04-01',
                     state: 'CT',
@@ -360,9 +360,9 @@
                         });
                 }
                 selectedBar = this
-                console.log("Selected:" + d.cases);
-                console.log("Selected:" + d.date);
-                console.log("Selected:" + this);
+//                console.log("Selected:" + d.cases);
+//                console.log("Selected:" + d.date);
+//                console.log("Selected:" + this);
                 selectedIndex_svg1 = i
                 console.log(dataset1[i])
                 chart2(d.date)
@@ -373,7 +373,7 @@
             //maxCasesDate = ""
             //max
             for(i=0;i<dataset1.length;i++){
-                console.log(dataset1[i])
+                //console.log(dataset1[i])
                 if (dataset1[i].cases > dataset1[maxCasesIndex].cases){
                     maxCasesIndex = i;
                 }
@@ -472,7 +472,7 @@
                 .call(d3.axisBottom(x))
             .selectAll("text")
             .attr("dy", ".35em")
-            .attr("transform", "translate(-30,20) rotate(-45)")
+            .attr("transform", "translate(-30,40) rotate(-45)")
             .style("text-anchor", "start");
 
             g.append("g")
@@ -620,6 +620,14 @@
                 return (d.state == selectedState) ? d.cases : 0;
             })]);
 
+            temp_d = ""
+            for (i=0; i < dataset2.length;i++){
+                if (dataset2[i].state == selectedState){
+                    temp_d += dataset2[i].cases + ", ";
+                }
+            }
+            console.log(temp_d);
+            console.log(d3.max(dataset2, function (d) {return (d.state == selectedState) ? d.cases : 0;}));
             g.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x))
