@@ -105,8 +105,8 @@
         var dataset1;
         var dataset2;
         async function init() {
-            dataset1 = await d3.csv("./us.csv")
-            dataset2 = await d3.csv("./us-states.csv")
+            dataset1 = await d3.csv("./us.csv", d3.autoType)
+            dataset2 = await d3.csv("./us-states.csv", d3.autoType)
             
              adataset1 = [
                 {
