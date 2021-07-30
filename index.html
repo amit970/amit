@@ -105,10 +105,10 @@
         var dataset1;
         var dataset2;
         async function init() {
-            //dataset1 = await d3.csv("./us.csv")
-            //dataset2 = await d3.csv("./us-states.csv")
+            dataset1 = await d3.csv("./us.csv")
+            dataset2 = await d3.csv("./us-states.csv")
             
-             dataset1 = [
+             adataset1 = [
                 {
                     date: '2020-04-01',
                     cases: 20974.14
@@ -170,7 +170,7 @@
                     cases: 29932.57
                 },
         ]
-              dataset2 = [
+              adataset2 = [
                 {
                     date: '2020-04-01',
                     state: 'CT',
