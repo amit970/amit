@@ -2,10 +2,17 @@
 
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/1.12.1/d3-annotation.min.js"></script>
     <title>Test - Amit</title>
     <style>
         .bar {
-            fill: green;
+            fill: darkgreen;
+        }
+        .tallestbar {
+            fill: yellow;
+        }
+        .smallestbar {
+            fill: gray;
         }
         
         .highlight {
@@ -16,6 +23,77 @@
             fill: blue;
             font-weight: bold;
         }
+        
+        body{
+        background-color: whitesmoke;
+     }
+
+    :root {
+      --line-chart-color: #607D8B;
+      --annotation-context-color: #00796B;
+      --annotation-above-color: #A02FA5;
+      --annotation-anomaly-color: #E8336D;
+    }
+
+     svg {
+        background-color: white;
+        font-family: 'Lato';
+     }
+
+     .axis, .axis text {
+       fill: var(--line-chart-color);
+     }
+
+     .axis line, path {
+      stroke: var(--line-chart-color);
+     }
+
+     path {
+       fill: none;
+     }
+
+    .annotation path {
+      stroke: var(--annotation-context-color);
+    }
+
+    .annotation:not(.above):not(.anomaly) path {
+      stroke-dasharray: 1,3;
+    }
+
+    .annotation text {
+      fill: var(--annotation-context-color);
+    }
+
+    .annotation.above path {
+      stroke: var(--annotation-above-color);
+    }
+
+    .annotation.above text {
+      fill: var(--annotation-above-color);
+    }
+
+    .annotation.anomaly path {
+      stroke: var(--annotation-anomaly-color);
+      stroke-width: 2px;
+    }
+
+    .annotation.anomaly text {
+      fill: var(--annotation-anomaly-color);
+    }
+
+    .annotation-note-bg {
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .annotation-note-title {
+      font-weight: bold;
+    }
+
+    text.title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+        
     </style>
 </head>
 
@@ -27,10 +105,10 @@
         var dataset1;
         var dataset2;
         async function init() {
-            dataset1 = await d3.csv("./us.csv")
-            dataset2 = await d3.csv("./us-states.csv")
+            //dataset1 = await d3.csv("./us.csv")
+            //dataset2 = await d3.csv("./us-states.csv")
             
-             dataset11 = [
+             dataset1 = [
                 {
                     date: '2020-04-01',
                     cases: 20974.14
@@ -92,7 +170,7 @@
                     cases: 29932.57
                 },
         ]
-              dataset22 = [
+              dataset2 = [
                 {
                     date: '2020-04-01',
                     state: 'CT',
@@ -289,6 +367,75 @@
                 console.log(dataset1[i])
                 chart2(d.date)
             }
+            
+            maxCasesIndex = 0
+            minCasesIndex = 0
+            //maxCasesDate = ""
+            //max
+            for(i=0;i<dataset1.length;i++){
+                console.log(dataset1[i])
+                if (dataset1[i].cases > dataset1[maxCasesIndex].cases){
+                    maxCasesIndex = i;
+                }
+                if (dataset1[i].cases < dataset1[minCasesIndex].cases){
+                    minCasesIndex = i;
+                }
+            }
+            console.log("Maximum cases Index:"+ maxCasesIndex);
+            console.log("Minimum cases Index:"+ minCasesIndex);
+            
+            svg1.selectAll("rect")
+            .attr("class", function(d){ return (d.date == dataset1[maxCasesIndex].date) ? "tallestbar" : (d.date == dataset1[minCasesIndex].date)? "smallestbar":"bar"  })
+            //svg1.selectAll("rect")
+            //.attr("class", function(d){ if (d.date == dataset1[minCasesIndex].date) return "smallestbar"})
+
+            
+            // Features of the annotation
+            const annotations = [
+              {
+                note: {
+                  title: "Maximum Cases",
+                  //label: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset1[maxCasesIndex].date) + 115 ,
+                y: y(dataset1[maxCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              },
+                {
+                note: {
+                  title: "Minimum Cases",
+                  //title: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset1[minCasesIndex].date) + 115 ,
+                y: y(dataset1[minCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              }
+                
+            ]
+            
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+            svg1
+              .append("g")
+            .attr("class", "annotation-group")
+              .call(makeAnnotations)
+            
+            
         }
         
         
@@ -317,7 +464,7 @@
                 return d.state;
             }));
             y.domain([0, d3.max(dataset2, function (d) {
-                return d.cases;
+                return (d.date == selectedDate) ? d.cases : 0;
             })]);
 
             g.append("g")
@@ -470,7 +617,7 @@
                 return d.date;
             }));
             y.domain([0, d3.max(dataset2, function (d) {
-                return d.cases;
+                return (d.state == selectedState) ? d.cases : 0;
             })]);
 
             g.append("g")
