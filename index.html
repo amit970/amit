@@ -426,8 +426,8 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset1[maxCasesIndex][date]) + 115 ,
-                y: y(dataset1[maxCasesIndex][cases])+85,
+                x: x(dataset1[maxCasesIndex]["date"]) + 115 ,
+                y: y(dataset1[maxCasesIndex]["cases"])+85,
                 dy: -40,
                 dx: 40
               },
@@ -442,8 +442,8 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset1[minCasesIndex].date) + 115 ,
-                y: y(dataset1[minCasesIndex].cases)+85,
+                x: x(dataset1[minCasesIndex]["date"]) + 115 ,
+                y: y(dataset1[minCasesIndex]["cases"])+85,
                 dy: -40,
                 dx: 40
               }
