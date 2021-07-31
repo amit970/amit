@@ -120,7 +120,7 @@
                                     })
             dataset2 = await d3.csv("./us-states.csv", function(error,d) {
                  if (error) {
-          console.log(error);  //Log the error.
+          //console.log(error);  //Log the error.
     } else {
           //console.log(d);
                                                           return {
@@ -242,8 +242,8 @@
         ]
             
               
-              console.log(dataset1[0]["date"])
-              console.log(dataset1[0]["cases"])
+              console.log(dataset1[0])
+              console.log(dataset1[0].date)
               
               var svg1 = d3.select("#svg1");
             margin = 250;
