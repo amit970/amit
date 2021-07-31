@@ -613,10 +613,10 @@
             for(i=0;i<dataset2.length;i++){
                 if (dataset2[i].date == selectedDate){
                 //console.log(dataset1[i])
-                if (dataset1[i].cases > dataset1[maxCasesIndex].cases){
+                if (dataset2[i].cases > dataset2[maxCasesIndex].cases){
                     maxCasesIndex = i;
                 }
-                if (dataset1[i].cases < dataset1[minCasesIndex].cases){
+                if (dataset2[i].cases < dataset2[minCasesIndex].cases){
                     minCasesIndex = i;
                 }
             }
@@ -833,6 +833,75 @@
                 selectedIndex_svg1 = i
                 console.log(dataset2[i])
             }
+            
+            
+            
+            maxCasesIndex = 0
+            minCasesIndex = 0
+            //maxCasesDate = ""
+            //max
+            for(i=0;i<dataset2.length;i++){
+                if ((dataset2[i].date == selectedDate) && (dataset2[i].state == selectedState)){
+                //console.log(dataset1[i])
+                if (dataset2[i].cases > dataset2[maxCasesIndex].cases){
+                    maxCasesIndex = i;
+                }
+                if (dataset2[i].cases < dataset2[minCasesIndex].cases){
+                    minCasesIndex = i;
+                }
+            }
+            }
+            console.log("Maximum cases Index:"+ maxCasesIndex);
+            console.log("Minimum cases Index:"+ minCasesIndex);
+            
+            svg1.selectAll("rect")
+            .attr("class", function(d){ return (d.date == dataset2[maxCasesIndex].date) ? "tallestbar" : (d.date == dataset2[minCasesIndex].date)? "smallestbar":"bar"  })
+         
+         // Features of the annotation
+            const annotations = [
+              {
+                note: {
+                  title: "Maximum Cases:" + dataset2[maxCasesIndex].cases,
+                  //label: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset2[maxCasesIndex].date) + 115 ,
+                y: y(dataset2[maxCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              },
+                {
+                note: {
+                  title: "Minimum Cases:"+dataset2[minCasesIndex].cases,
+                  //title: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset2[minCasesIndex].date) + 115 ,
+                y: y(dataset2[minCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              }
+                
+            ]
+            
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+            svg1
+              .append("g")
+            .attr("class", "annotation-group")
+              .call(makeAnnotations)
+            
         }
         
     </script>
