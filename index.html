@@ -398,7 +398,7 @@
             const annotations = [
               {
                 note: {
-                  title: "Maximum Cases",
+                  title: "Maximum Cases:" + dataset1[maxCasesIndex].cases,
                   //label: "Annotation title",
                   //align: "middle",  // try right or left
                   wrap: 200,  // try something smaller to see text split in several lines
@@ -407,14 +407,14 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset1[maxCasesIndex]["date"]) + 115 ,
-                y: y(dataset1[maxCasesIndex]["cases"])+85,
+                x: x(dataset1[maxCasesIndex].date) + 115 ,
+                y: y(dataset1[maxCasesIndex].cases)+85,
                 dy: -40,
                 dx: 40
               },
                 {
                 note: {
-                  title: "Minimum Cases",
+                  title: "Minimum Cases:"+dataset1[minCasesIndex].cases,
                   //title: "Annotation title",
                   //align: "middle",  // try right or left
                   wrap: 200,  // try something smaller to see text split in several lines
@@ -423,8 +423,8 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset1[minCasesIndex]["date"]) + 115 ,
-                y: y(dataset1[minCasesIndex]["cases"])+85,
+                x: x(dataset1[minCasesIndex].date) + 115 ,
+                y: y(dataset1[minCasesIndex].cases)+85,
                 dy: -40,
                 dx: 40
               }
@@ -482,9 +482,9 @@
                     }
                 }
             }
-            console.log(temp_d);
-         console.log("chart2 maximum:"+max_d)
-            console.log(d3.max(dataset2, function (d) {return (d.date == selectedDate) ? d.cases : 0;}));
+            //console.log(temp_d);
+         //console.log("chart2 maximum:"+max_d)
+           // console.log(d3.max(dataset2, function (d) {return (d.date == selectedDate) ? d.cases : 0;}));
          
             g.append("g")
                 .attr("transform", "translate(0," + height + ")")
@@ -605,6 +605,72 @@
                 console.log(dataset2[i])
                 chart3(d.date, d.state)
             }
+         
+         maxCasesIndex = 0
+            minCasesIndex = 0
+            //maxCasesDate = ""
+            //max
+            for(i=0;i<dataset2.length;i++){
+                if (dataset2[i].date == selectedDate){
+                //console.log(dataset1[i])
+                if (dataset1[i].cases > dataset1[maxCasesIndex].cases){
+                    maxCasesIndex = i;
+                }
+                if (dataset1[i].cases < dataset1[minCasesIndex].cases){
+                    minCasesIndex = i;
+                }
+            }
+            }
+            console.log("Maximum cases Index:"+ maxCasesIndex);
+            console.log("Minimum cases Index:"+ minCasesIndex);
+            
+            svg1.selectAll("rect")
+            .attr("class", function(d){ return (d.date == dataset2[maxCasesIndex].date) ? "tallestbar" : (d.date == dataset2[minCasesIndex].date)? "smallestbar":"bar"  })
+         
+         // Features of the annotation
+            const annotations = [
+              {
+                note: {
+                  title: "Maximum Cases:" + dataset2[maxCasesIndex].cases,
+                  //label: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset2[maxCasesIndex].date) + 115 ,
+                y: y(dataset2[maxCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              },
+                {
+                note: {
+                  title: "Minimum Cases:"+dataset2[minCasesIndex].cases,
+                  //title: "Annotation title",
+                  //align: "middle",  // try right or left
+                  wrap: 200,  // try something smaller to see text split in several lines
+                  padding: 10   // More = text lower
+                },
+                className: "anomaly",
+                type: d3.annotationCalloutElbow,
+    connector: { end: "arrow" },
+                x: x(dataset2[minCasesIndex].date) + 115 ,
+                y: y(dataset2[minCasesIndex].cases)+85,
+                dy: -40,
+                dx: 40
+              }
+                
+            ]
+            
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+            svg1
+              .append("g")
+            .attr("class", "annotation-group")
+              .call(makeAnnotations)
         }
         
         
