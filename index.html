@@ -105,19 +105,8 @@
         var dataset1;
         var dataset2;
         async function init() {
-            dataset1 = await d3.csv("./us.csv", ({date, cases}) => ({date: date, close: +close}))
-            dataset2 = await d3.csv("./us-states.csv", function(error,d) {
-                 if (error) {
-          //console.log(error);  //Log the error.
-    } else {
-          //console.log(d);
-                                                          return {
-                                                            date: d.date, 
-                                                            state: d.state,
-                                                            cases: +d.cases,
-                                                            deaths: +d.deaths 
-                                                          };
-                                                        }})
+            dataset1 = await d3.csv("./us.csv", ({date, cases}) => ({date: date, cases: +cases}))
+            dataset2 = await d3.csv("./us-states.csv", ({date, state,cases,deaths}) => ({date: date, state:state,cases: +cases,deaths:+deaths}))
             
              adataset1 = [
                 {
