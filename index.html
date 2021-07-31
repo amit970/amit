@@ -107,9 +107,9 @@
         async function init() {
             dataset1 = await d3.csv("./us.csv", function(error, d) {
                                         if (error) {
-          console.log(error);  //Log the error.
+          //console.log(error);  //Log the error.
     } else {
-          console.log(d);
+          //console.log(d);
         return {
                                                             date: d.date, 
                                                             
@@ -242,7 +242,7 @@
         ]
             
               
-              console.log(typeof(dataset1))
+              console.log(dataset1)
               //console.log(dataset1[0].date)
               
               var svg1 = d3.select("#svg1");
