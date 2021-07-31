@@ -105,8 +105,25 @@
         var dataset1;
         var dataset2;
         async function init() {
-            dataset1 = await d3.csv("./us.csv", d3.autoType)
-            dataset2 = await d3.csv("./us-states.csv", d3.autoType)
+            dataset1 = await d3.csv("./us.csv", function(d) {
+                                                          return {
+                                                            date: new Date(d.date),
+                                                            cases: +d.cases,
+                                                            deaths: +d.deaths 
+                                                          };
+                                                        }, function(error, rows) {
+                                                          console.log(rows);
+                                                        })
+            dataset2 = await d3.csv("./us-states.csv", function(d) {
+                                                          return {
+                                                            date: new Date(d.date), 
+                                                            state: d.state,
+                                                            cases: +d.cases,
+                                                            deaths: +d.deaths 
+                                                          };
+                                                        }, function(error, rows) {
+                                                          console.log(rows);
+                                                        })
             
              adataset1 = [
                 {
