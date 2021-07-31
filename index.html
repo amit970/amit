@@ -107,7 +107,7 @@
         async function init() {
             dataset1 = await d3.csv("./us.csv", function(d) {
                                                           return {
-                                                            date: new Date(d.date),
+                                                            date: d.date,
                                                             cases: +d.cases,
                                                             deaths: +d.deaths 
                                                           };
@@ -116,7 +116,7 @@
                                                         })
             dataset2 = await d3.csv("./us-states.csv", function(d) {
                                                           return {
-                                                            date: new Date(d.date), 
+                                                            date: d.date, 
                                                             state: d.state,
                                                             cases: +d.cases,
                                                             deaths: +d.deaths 
