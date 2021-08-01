@@ -133,7 +133,7 @@
         <li>Dataset 1 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv</a> - This has rolling average COVID data for USA.</li>
         <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in USA.</li>
     </ul>
-    Both the datasets are stored on github along witht his webpage due to security resrictions on making http calls.
+    Both the datasets are stored locally on github along with this webpage. HTTP calls to the above link was blocked by CORS policy and to overcome it, I stored a local copy of the data along with the webpage.
     <p>
         <font size="6" color="#1c87c9" face="arial"><b>Message</b></font>
         <br> What is the message you are trying to communicate with the narrative visualization?
@@ -271,7 +271,7 @@
                     cases: +cases,
                     cases_avg: +cases_avg
                 }))
-                dataset2 = await d3.csv("https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv", ({
+                dataset2 = await d3.csv("./us-states.csv", ({
                     date, state, cases, cases_avg, deaths
                 }) => ({
                     date: date,
