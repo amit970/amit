@@ -107,8 +107,8 @@
         
         
         async function init() {
-            dataset1 = await d3.csv("./us.csv", ({date, cases}) => ({date: date, cases: +cases, , cases_avg: +cases_avg}))
-            dataset2 = await d3.csv("./us-states.csv", ({date, state,cases,deaths}) => ({date: date, state:state,cases: +cases,deaths:+deaths}))
+            dataset1 = await d3.csv("./us.csv", ({date, cases}) => ({date: date, cases: +cases, cases_avg: +cases_avg}))
+            dataset2 = await d3.csv("./us-states.csv", ({date, state,cases,cases_avg,deaths}) => ({date: date, state:state,cases: +cases,cases_avg: +cases_avg,deaths:+deaths}))
             
             adataset1 = [
                 {
