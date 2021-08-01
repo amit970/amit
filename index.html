@@ -229,7 +229,7 @@
                   return monthendDates.includes( el.date );
                 } );
               
-              console.log(dataset1)
+              //console.log(dataset1)
               //console.log(dataset1[0].date)
               
               var svg1 = d3.select("#svg1");
@@ -327,7 +327,7 @@
                         return height - y(d.cases) + 10;
                     });
 
-                console.log("Cases are:" + x(d.date));
+                //console.log("Cases are:" + x(d.date));
                 svg1.append('text')
                     .attr('id', 'val'+i)
                     .attr('x', x(d.date)+80)
@@ -337,7 +337,7 @@
 
             function onMouseOut(d, i) {
                 if (selectedIndex_svg1 != i){
-                    console.log(maxCasesIndex1 +", "+minCasesIndex1+", date:"+dataset1[maxCasesIndex1]);
+                    //console.log(maxCasesIndex1 +", "+minCasesIndex1+", date:"+dataset1[maxCasesIndex1]);
                     styleClass = "bar";
                     if (d.date == dataset1[maxCasesIndex1].date){                        
                         styleClass = "tallestbar"
@@ -384,9 +384,9 @@
                         });
                 }
                 selectedBar = this
-                console.log("Selected:" + d.cases);
-                console.log("Selected:" + d.date);
-                console.log("Selected:" + this);
+//                console.log("Selected:" + d.cases);
+//                console.log("Selected:" + d.date);
+//                console.log("Selected:" + this);
                 selectedIndex_svg1 = i
                 console.log(dataset1[i])
                 chart2(d.date)
@@ -470,7 +470,7 @@
 
             svg1.append("text")
                 .attr("transform", "translate(100,0)")
-                .attr("x", 10).attr("y", 50)
+                .attr("x", 10).attr("y", 30)
                 .attr("font-size", "20px")
                 .attr("class", "title")
                 .text("Average Cases in " + selectedDate.substring(0,7))
@@ -542,15 +542,6 @@
                     return height - y(d.cases);
                 });
 
-
-            //.selectAll(".xaxis text") // Select all the text elements for the xaxis
-            //.attr("transform", function(d) {return "rotate(-45)";});
-
-
-            //        g.selectAll(".xaxis text") // Select all the text elements for the xaxis
-            //        .attr("transform", function(d) {return "rotate(-45)";});
-            //  
-
             function onMouseOver2(d, i) {
                 d3.select(this)
                     .attr('class', 'highlight');
@@ -566,10 +557,8 @@
                         return height - y(d.cases) + 10;
                     });
 
-                console.log("Cases are:" + x(d.state));
                 svg1.append('text')
                     .attr('class', 'val')
-                //.attr("transform", "translate("+100+"," + 0+") rotate(-45)")
                     .attr('x', x(d.state)+80)
                     .attr('y', y(d.cases)+80)
                 
@@ -645,7 +634,7 @@
     connector: { end: "arrow" },
                 x: x(dataset2[maxCasesIndex2].state) + 115 ,
                 y: y(dataset2[maxCasesIndex2].cases)+85,
-                dy: -40,
+                dy: -20,
                 dx: 40
               },
                 {
@@ -661,7 +650,7 @@
     connector: { end: "arrow" },
                 x: x(dataset2[minCasesIndex2].state) + 115 ,
                 y: y(dataset2[minCasesIndex2].cases)+85,
-                dy: -40,
+                dy: -20,
                 dx: 40
               }
                 
@@ -700,7 +689,7 @@
 
             svg1.append("text")
                 .attr("transform", "translate(100,0)")
-                .attr("x", 10).attr("y", 50)
+                .attr("x", 10).attr("y", 30)
                 .attr("font-size", "20px")
                 .attr("class", "title")
                 .text("Average Cases for " + selectedState +" in "+ selectedDate.substring(0,7))
@@ -873,7 +862,7 @@
     connector: { end: "arrow" },
                 x: x3(stateDataset[maxCasesIndex3].date) + 115 ,
                 y: y3(stateDataset[maxCasesIndex3].cases)+85,
-                dy: -40,
+                dy: -20,
                 dx: 40
               },
                 {
@@ -889,7 +878,7 @@
     connector: { end: "arrow" },
                 x: x3(stateDataset[minCasesIndex3].date) + 115 ,
                 y: y3(stateDataset[minCasesIndex3].cases)+85,
-                dy: -40,
+                dy: -20,
                 dx: 40
               }
                 
