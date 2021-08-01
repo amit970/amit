@@ -34,8 +34,9 @@
         body {
             background-color: whitesmoke;
         }
+        
         html {
-          scroll-behavior: smooth;
+            scroll-behavior: smooth;
         }
         
         td {
@@ -117,6 +118,38 @@
     <h1 align="center"> COVID Data From March 2020 till July 2021</h1>
     <h4 align="center">Interactive Slideshow Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
     <br>
+    
+    This page is using 2 sets of COVID data available on github. <br>
+    <ul><li>Dataset 1 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv</a> - This has rolling average COVID data for USA.</li>
+    <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each US States.</li>
+    </ul>
+    
+    <font size="6" color="#1c87c9" face="arial"><b>Message</b></font><br>
+    The charts on the slides are showing confirmed cases in 2020 and 2021. In this <b>Interactive Slideshow</b>, I am trying to study/analyze:<br>
+    <ul>
+    <li>Slide 1 :- In USA, Which month end has highest rolling average? High number of confirmed cases shows the time period when COVID situation was worse and and low number of cases shows the decline in number of confirmed cases.</li>
+    <li>Slide 2 :- For the selected month in Slide 1, it shows the the number of confirmed cases across all US States. Some states had very low numer where as some states like California, New York had huge spike. We can depict which state was doing better in managing the COVID situation and which one was doing worse. User can select a state here to see daily data for that month.</li>
+    <li>Slide 3 :- For the selected month and selected US state in slide 2, daily confirmed cases are displayed. It depicts the rise or fall in COVID cases in the selected month and US state. With the daily data for a state, one can depict the situation of COVID in that state i.e. on the rise or flat or decline.</li>
+    </ul>
+    
+    <br><font size="6" color="#1c87c9" face="arial"><b>Narrative Structure</b></font><br>
+    I have chosen Interactive Slideshow structure. User can click on various data point in the graph to see more details in the next slides. User can go back and forth between the slides to choose a different data point and analye the results.
+    Messaging. What is the message you are trying to communicate with the narrative visualization?
+
+Narrative Structure. Which structure was your narrative visualization designed to follow (martini glass, interactive slide show or drop-down story)? How does your narrative visualization follow that structure? (All of these structures can include the opportunity to "drill-down" and explore. The difference is where that opportunity happens in the structure.)
+
+Visual Structure. What visual structure is used for each scene? How does it ensure the viewer can understand the data and navigate the scene? How does it highlight to urge the viewer to focus on the important parts of the data in each scene? How does it help the viewer transition to other scenes, to understand how the data connects to the data in other scenes?
+
+Scenes. What are the scenes of your narrative visualization?  How are the scenes ordered, and why
+
+Annotations. What template was followed for the annotations, and why that template? How are the annotations used to support the messaging? Do the annotations change within a single scene, and if so, how and why
+
+Parameters. What are the parameters of the narrative visualization? What are the states of the narrative visualization? How are the parameters used to define the state and each scene?
+
+Triggers. What are the triggers that connect user actions to changes of state in the narrative visualization? What affordances are provided to the user to communicate to them what options are available to them in the narrative visualization?
+    
+    
+    <br>
     <div>
         <table id="svg1header2" cellpadding=10>
             <tr>
@@ -127,9 +160,17 @@
             </tr>
         </table>
 
-        <h5>Click on Bars to see average cases by US states for the selected Date in next slide.</h5>
-        <svg id="svg1" width="1200" height="500"></svg>
+        <h5>
+            This chart is showing Month end dates with the average number of new cases reported that day and the six days prior. In other words, the seven-day trailing average.
+            
+            
+            Click on Bars to see average cases by US states for the selected Date in next slide.
         
+        
+        
+        </h5>
+        <svg id="svg1" width="1200" height="500"></svg>
+
 
         <div id="svg2header2">
             <h5 id="svg2header1">Please select Month in slide 1.</h5>
@@ -143,12 +184,12 @@
                 </tr>
             </table>
 
-            
+
             <svg id="svg2" width="1200" height="500"></svg>
-            
-            <div  id="svg3header2">
+
+            <div id="svg3header2">
                 <h5 id="svg3header1">Please select Month and US State in slide 2.</h5>
-                <h5  id="svg3title">Showing Daily cases in selected Month and US State.</h5>
+                <h5 id="svg3title">Showing Daily cases in selected Month and US State.</h5>
                 <table id="svg3slideTbl" cellpadding=10>
                     <tr>
                         <th>Slides: </th>
@@ -158,7 +199,7 @@
                     </tr>
                 </table>
 
-                
+
                 <svg id="svg3" width="1200" height="500"></svg>
             </div>
         </div>
@@ -466,11 +507,11 @@
                         selectedIndex_svg1 = i
                         console.log(dataset1[i])
                         chart2(dataset1[i].date)
-                        
+
                         document.getElementById("svg2header1").style.display = "none";
                         document.getElementById("svg2title").style.display = "block";
                         document.getElementById('svg2title').scrollIntoView();
-            //document.getElementById("svg3title").style.display = "none";
+                        //document.getElementById("svg3title").style.display = "none";
 
                     }
                 }
