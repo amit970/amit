@@ -494,7 +494,7 @@
             .selectAll("text")
             .attr("dy", ".35em")
             .attr("transform", "translate(-45,40) rotate(-45)")
-            .style("text-anchor", "start");
+            .style("text-anchor", "end");
 
             g.append("g")
                 .append("text")
@@ -748,7 +748,7 @@
                 .attr("class", "bar")
                 .on("mouseover", onMouseOver3)
                 .on("mouseout", onMouseOut3)
-                .on("click", onMouseClick3)
+                //.on("click", onMouseClick3)
                 .attr("x", function (d) {
                     return x3(d.date);
                 })
@@ -816,13 +816,13 @@
 
             //var selectedIndex_svg1 = -1;
 
-            function onMouseClick3(d, i) {
-                console.log("Selected:" + d.cases);
-                console.log("Selected:" + d.date);
-                console.log("Selected:" + i);
-                //selectedIndex_svg1 = i
-                console.log(stateDataset[i])
-            }
+//            function onMouseClick3(d, i) {
+//                console.log("Selected:" + d.cases);
+//                console.log("Selected:" + d.date);
+//                console.log("Selected:" + i);
+//                //selectedIndex_svg1 = i
+//                console.log(stateDataset[i])
+//            }
             
             
             
