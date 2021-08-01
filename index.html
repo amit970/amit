@@ -3,6 +3,24 @@
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/1.12.1/d3-annotation.min.js"></script>
+    <script>
+    format = function date2str(x, y) {
+        var z = {
+            M: x.getMonth() + 1,
+            d: x.getDate(),
+            h: x.getHours(),
+            m: x.getMinutes(),
+            s: x.getSeconds()
+        };
+        y = y.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
+            return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
+        });
+
+        return y.replace(/(y+)/g, function(v) {
+            return x.getFullYear().toString().slice(-v.length)
+        });
+    }
+    </script>
     <title>Test - Amit</title>
     <style>
         .bar {
@@ -104,17 +122,19 @@
     <script>
         var dataset1;
         var dataset2;
+        
+        
         async function init() {
             dataset1 = await d3.csv("./us.csv", ({date, cases}) => ({date: date, cases: +cases}))
             dataset2 = await d3.csv("./us-states.csv", ({date, state,cases,deaths}) => ({date: date, state:state,cases: +cases,deaths:+deaths}))
             
              adataset1 = [
                 {
-                    date: '2020-04-01',
+                    date: '2020-04-30',
                     cases: 20974.14
                 },
                 {
-                    date: '2020-04-02',
+                    date: '2020-05-31',
                     cases: 22791.14
                 },
                 {
@@ -177,27 +197,27 @@
                     cases: 124.14
                 },
                 {
-                    date: '2020-04-01',
+                    date: '2020-04-30',
                     state: 'NJ',
                     cases: 204.14
                 },
                 {
-                    date: '2020-04-01',
+                    date: '2020-04-30',
                     state: 'NY',
                     cases: 600.14
                 },
                 {
-                    date: '2020-04-02',
+                    date: '2020-04-30',
                     state: 'CT',
                     cases: 323
                 },
                 {
-                    date: '2020-04-02',
+                    date: '2020-05-31',
                     state: 'NJ',
                     cases: 500
                 },
                 {
-                    date: '2020-04-02',
+                    date: '2020-05-31',
                     state: 'NY',
                     cases: 1300.14
                 },
@@ -217,7 +237,15 @@
                     cases: 6300.14
                 },
         ]
-            
+       
+              var monthendDates = ['2020-01-31','2020-02-29','2020-03-31','2020-04-30','2020-05-31','2020-06-30','2020-07-31',
+                                   '2020-08-31','2020-09-30','2020-10-31','2020-11-30','2020-12-31','2021-01-31','2021-02-28',
+                                  '2021-03-31','2021-04-30','2021-05-31','2021-06-30']
+              
+              
+                dataset1 = dataset1.filter( function( el ) {
+                  return monthendDates.includes( el.date );
+                } );
               
               console.log(dataset1)
               //console.log(dataset1[0].date)
@@ -243,6 +271,7 @@
             x.domain(dataset1.map(function (d) {
                 return d.date;
             }));
+            
             y.domain([0, d3.max(dataset1, function (d) {
                 return d.cases;
             })]);
@@ -278,8 +307,6 @@
             g.append("g")
                 .attr("transform", "translate(0, 0)")
                 .call(d3.axisLeft(y))
-            
-            
 
             g.selectAll(".bar")
                 .data(dataset1)
