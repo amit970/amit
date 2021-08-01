@@ -134,6 +134,7 @@
         <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in USA.</li>
     </ul>
     Both the datasets are stored locally on github along with this webpage. HTTP calls to the above link was blocked by CORS policy and to overcome it, I stored a local copy of the data along with the webpage.
+    <br> NOTE: The US territories "Northern Mariana Islands", "Guam", "Virgin Islands" do not have good data so they have been excluded from the datasets across all scenes.
     <p>
         <font size="6" color="#1c87c9" face="arial"><b>Message</b></font>
         <br> What is the message you are trying to communicate with the narrative visualization?
@@ -281,127 +282,9 @@
                     deaths: +deaths
                 }))
 
-                adataset1 = [
-                    {
-                        date: '2020-04-30',
-                        cases_avg: 20974.14
-                },
-                    {
-                        date: '2020-05-31',
-                        cases_avg: 22791.14
-                },
-                    {
-                        date: '2020-04-03',
-                        cases_avg: 24932.29
-                },
-                    {
-                        date: '2020-04-04',
-                        cases_avg: 26937
-                },
-                    {
-                        date: '2020-04-05',
-                        cases_avg: 27950.71
-                },
-                    {
-                        date: '2020-04-06',
-                        cases_avg: 29300.29
-                },
-                    {
-                        date: '2020-04-07',
-                        cases_avg: 30133.29
-                },
-                    {
-                        date: '2020-04-08',
-                        cases_avg: 30831.86
-                },
-                    {
-                        date: '2020-04-09',
-                        cases_avg: 31543.57
-                },
-                    {
-                        date: '2020-04-10',
-                        cases_avg: 31708.57
-                },
-                    {
-                        date: '2020-04-11',
-                        cases_avg: 31225.86
-                },
-                    {
-                        date: '2020-04-12',
-                        cases_avg: 31444
-                },
-                    {
-                        date: '2020-04-13',
-                        cases_avg: 30708.71
-                },
-                    {
-                        date: '2020-04-14',
-                        cases_avg: 30187.86
-                },
-                    {
-                        date: '2020-04-15',
-                        cases_avg: 29932.57
-                },
-        ]
-                adataset2 = [
-                        {
-                            date: '2020-04-01',
-                            state: 'Washington',
-                            cases_avg: 124.14,
-                            cases: 124.14
-                },
-                        {
-                            date: '2020-04-30',
-                            state: 'Massachusetts',
-                            cases_avg: 204.14,
-                            cases: 224.14
-                },
-                        {
-                            date: '2020-04-30',
-                            state: 'Northern Mariana Islands',
-                            cases_avg: 600.14,
-                            cases: 624.14
-                },
-                        {
-                            date: '2020-04-30',
-                            state: 'Washington',
-                            cases_avg: 323,
-                            cases: 324.14
-                },
-                        {
-                            date: '2020-05-31',
-                            state: 'Massachusetts',
-                            cases_avg: 500,
-                            cases: 624.14
-                },
-                        {
-                            date: '2020-05-31',
-                            state: 'Northern Mariana Islands',
-                            cases_avg: 1300.14,
-                            cases: 1324.14
-                },
-                        {
-                            date: '2020-04-03',
-                            state: 'CT',
-                            cases_avg: 1574.14,
-                            cases: 1524.14
-                },
-                        {
-                            date: '2020-04-03',
-                            state: 'Massachusetts',
-                            cases_avg: 2704.14,
-                            cases: 2124.14
-                },
-                        {
-                            date: '2020-04-03',
-                            state: 'NY',
-                            cases_avg: 6300.14,
-                            cases: 6124.14
-                },
-        ]
-                    //'2020-01-31','2020-02-29',
                 var monthendDates = ['2020-03-31', '2020-04-30', '2020-05-31', '2020-06-30', '2020-07-31',
-                                   '2020-08-31', '2020-09-30', '2020-10-31', '2020-11-30', '2020-12-31', '2021-01-31', '2021-02-28',
+                                   '2020-08-31', '2020-09-30', '2020-10-31', '2020-11-30', '2020-12-31', 
+                                     '2021-01-31', '2021-02-28',
                                   '2021-03-31', '2021-04-30', '2021-05-31', '2021-06-30', '2021-07-31']
 
 
