@@ -493,7 +493,7 @@
                 .call(d3.axisBottom(x))
             .selectAll("text")
             .attr("dy", ".35em")
-            .attr("transform", "translate(-40,40) rotate(-45)")
+            .attr("transform", "translate(-45,40) rotate(-45)")
             .style("text-anchor", "start");
 
             g.append("g")
@@ -707,20 +707,20 @@
                 return d.cases;
             })]);
 
-            temp_d = ""
-            for (i=0; i < stateDataset.length;i++){
-                if (stateDataset[i].state == selectedState){
-                    temp_d += dataset2[i].cases + ", ";
-                }
-            }
-            console.log(temp_d);
-            console.log(d3.max(stateDataset, function (d) {return (d.state == selectedState) ? d.cases : 0;}));
+//            temp_d = ""
+//            for (i=0; i < stateDataset.length;i++){
+//                if (stateDataset[i].state == selectedState){
+//                    temp_d += dataset2[i].cases + ", ";
+//                }
+//            }
+//            console.log(temp_d);
+//            console.log(d3.max(stateDataset, function (d) {return (d.state == selectedState) ? d.cases : 0;}));
             g.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x3))
             .selectAll("text")
             .attr("dy", ".35em")
-            .attr("transform", "translate(-30,40) rotate(-45)")
+            .attr("transform", "translate(-45,40) rotate(-45)")
             .style("text-anchor", "start");
 
             g.append("g")
