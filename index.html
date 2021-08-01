@@ -10,6 +10,17 @@
     </script>
     <title>Test - Amit</title>
     <style>
+        hr {
+            width: 80%;
+            height: 8px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: saddlebrown;
+            border: 0 none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
         .bar {
             fill: darkgreen;
         }
@@ -114,44 +125,78 @@
 </head>
 
 <body onload='init()'>
-    <div id="firstElement"></div>
-    <h1 align="center"> COVID Data From March 2020 till July 2021</h1>
-    <h4 align="center">Interactive Slideshow Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
+    <font size="6" color="#1c87c9" face="arial"><b><div id="firstElement" align="center">COVID Data From March 2020 till July 2021</div></b></font>
+    <h4 align="center">Interactive Slideshow Narrative Visualtion Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
+    <br> This page is using 2 different sets of COVID data available on github.
     <br>
-    
-    This page is using 2 sets of COVID data available on github. <br>
-    <ul><li>Dataset 1 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv</a> - This has rolling average COVID data for USA.</li>
-    <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each US States.</li>
-    </ul>
-    
-    <font size="6" color="#1c87c9" face="arial"><b>Message</b></font><br>
-    The charts on the slides are showing confirmed cases in 2020 and 2021. In this <b>Interactive Slideshow</b>, I am trying to study/analyze:<br>
     <ul>
-    <li>Slide 1 :- In USA, Which month end has highest rolling average? High number of confirmed cases shows the time period when COVID situation was worse and and low number of cases shows the decline in number of confirmed cases.</li>
-    <li>Slide 2 :- For the selected month in Slide 1, it shows the the number of confirmed cases across all US States. Some states had very low numer where as some states like California, New York had huge spike. We can depict which state was doing better in managing the COVID situation and which one was doing worse. User can select a state here to see daily data for that month.</li>
-    <li>Slide 3 :- For the selected month and selected US state in slide 2, daily confirmed cases are displayed. It depicts the rise or fall in COVID cases in the selected month and US state. With the daily data for a state, one can depict the situation of COVID in that state i.e. on the rise or flat or decline.</li>
+        <li>Dataset 1 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv</a> - This has rolling average COVID data for USA.</li>
+        <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in USA.</li>
     </ul>
-    
-    <br><font size="6" color="#1c87c9" face="arial"><b>Narrative Structure</b></font><br>
-    I have chosen Interactive Slideshow structure. User can click on various data point in the graph to see more details in the next slides. User can go back and forth between the slides to choose a different data point and analye the results.
-    Messaging. What is the message you are trying to communicate with the narrative visualization?
+    Both the datasets are stored on github along witht his webpage due to security resrictions on making http calls.
+    <p>
+        <font size="6" color="#1c87c9" face="arial"><b>Message</b></font>
+        <br> What is the message you are trying to communicate with the narrative visualization?
+        <br> The charts on the slides are showing confirmed cases in 2020 and 2021. The aim here is to provide a way to user to slice &amp; dice the data in such a way to make it easy for them to figure out e.g. What is the time perdion when USA had most number of COVID cases were rising and in what time period, it was declining? Some states had very low numer of cases where as some states like California, New York had huge spike. Chart shows that which state was doing better in managing the COVID situation and which one was doing worse.
+        <br>
+        <br>For Slide 2 and 3, same dataset is being used but it is sliced &amp; diced in a different way to perform 2 different analysis. Data is filtered on the fly for the selected month which shows in that month, what was the average number of cases across US states. Then using same dataset, data is filtered on the fly for the selected month and the selected state, showing the daily number of covid cases in that state.
+    </p>
 
-Narrative Structure. Which structure was your narrative visualization designed to follow (martini glass, interactive slide show or drop-down story)? How does your narrative visualization follow that structure? (All of these structures can include the opportunity to "drill-down" and explore. The difference is where that opportunity happens in the structure.)
+    <p>
+        <br><font size="6" color="#1c87c9" face="arial"><b>Narrative Structure</b></font>
+        <br> I have chosen Interactive Slideshow structure. I am displayin monthly average number of cases and in order to analyze data in each month, across US states OR for a given state, User sholud be go back and forth between the slides and structure should allow an easy oppotunity to choose a different data point for analysis. Slide 1 and Slide 2 offers user interaction. In slide 1, it shows a bar chart. User can click on bars to select different month. For the selected month, the number of covid confirmed cases are displayed in slide 2. User has an opportunity to select a state here.
+        <br>User can go back from Slide 2 to Slide 1 OR Slide 3 to Slide 1 adn can change the selection.
 
-Visual Structure. What visual structure is used for each scene? How does it ensure the viewer can understand the data and navigate the scene? How does it highlight to urge the viewer to focus on the important parts of the data in each scene? How does it help the viewer transition to other scenes, to understand how the data connects to the data in other scenes?
 
-Scenes. What are the scenes of your narrative visualization?  How are the scenes ordered, and why
+    </p>
+    <p>
+        <br><font size="6" color="#1c87c9" face="arial"><b>Visual Structure</b></font>
+        <br> I have choosen Bar charts to display the data across all 3 slides. With bars, their length or height on Y axis is according to the data we want to show. One can easily find low bars and high bars. To focus on the highest and lowest, I have put annotations with the data pointing to the bar. With annotations, a user is focused on that data point. and when user clicks the bar, user is taken to next slide.
+        <br>Each slide has a title that shows what analysis is being in this slide based on the selection made in previous slide. The datapoint selection is the key that connects the 2 slides/scenes.
 
-Annotations. What template was followed for the annotations, and why that template? How are the annotations used to support the messaging? Do the annotations change within a single scene, and if so, how and why
 
-Parameters. What are the parameters of the narrative visualization? What are the states of the narrative visualization? How are the parameters used to define the state and each scene?
+    </p>
 
-Triggers. What are the triggers that connect user actions to changes of state in the narrative visualization? What affordances are provided to the user to communicate to them what options are available to them in the narrative visualization?
-    
-    
+    <br><font size="6" color="#1c87c9" face="arial"><b>Scene</b></font>
+    <br> What are the scenes of your narrative visualization? How are the scenes ordered, and why There are 3 scenes or slides. The first slide is showing the data at country level by dates and then ability to analyze data at state level. Showing data at country level give a quick overview on covid cases that in which time period numbers were rising or declining or were flat. At any time, User can switch between scenes/slides and choose a different data point for further analysis.
+    <ul>
+        <li><b>Scene 1</b> :- It shows average number of COVID cases by month end dates. X axis of the bar chart has month end dates and y-axis has monthly average cases. In USA, Which month end has highest rolling average? High number of confirmed cases shows the time period when COVID situation was worse and low number of cases shows the period when number of confirmed cases were declining.</li>
+        <li><b>Scene 2</b> :- For the selected month in Slide 1, it shows the average number of confirmed cases across all US States. Some states had very low numer where as some states like California, New York had huge spike. We can depict which state was doing better in managing the COVID situation and which one was doing worse. User can select a state here to see daily data for that month.</li>
+        <li><b>Scene 3</b> :- For the selected month and selected US state in slide 2, <b>daily</b> confirmed cases are displayed. It depicts the rise or fall in COVID cases in the selected month and US state. With the daily data for a state, one can depict the situation of COVID in that state i.e. on the rise or flat or decline.</li>
+    </ul>
+
+    <p>
+        <br><font size="6" color="#1c87c9" face="arial"><b>Annotations</b></font>
+        <br> In this narration, we have 3 scenes with consistent anntations. All 3 scenes are showing the highest and lowest number of COVID cases with annotations. It quickly brings user's attention to those data points. Besides that, the color of the bar is also made different. If a different selection is made, the highest and lowest annotations are re-displayed according to the latest selection.
+        <br> On scrolling over the bars, the actual data point value is being displayed over the bar as tooltip/text.
+
+
+
+
+    </p>
+
+
+    <p>
+        <br><font size="6" color="#1c87c9" face="arial"><b>Parameters</b></font>
+        <br> Scene 1 feedng the input parameter to Scene 2. From the select date, numbers of average cases are displayed for all te US states. In scene 2, user can select a state by clicking on the bar. At this point, the selected date from Scene 1 and selected State from Scene2 becomes teh input parameters for Scene 3. From teh selected date, year and month is extracted. For the year, month and selected State, Scene 3 shows the daily number of covid cases.
+
+
+    </p>
+    <p>
+        <br><font size="6" color="#1c87c9" face="arial"><b>Triggers</b></font>
+        <br> In Scene 1 and Scene 2, user can click on bars to make a selection. After the selection, users is automatically progressed to next scene i.e. if user selects a date in Scene 1, then user is progressed to Scene 2 automtically. The data point selection or click is a triggering action. Similarly, in Scene 2, after state selection, user is progressed ot Scene 3.
+        <br>
+        <br>All Scene/Slide numbers are displayed in each scenes. User can click on the scene number to go back and forth between scenes.
+
+
+    </p>
+
+
+
     <br>
-    <div>
-        <table id="svg1header2" cellpadding=10>
+    <div id="svg1header2">
+        <hr>
+        <table cellpadding=10>
             <tr>
                 <th>Slides: </th>
                 <td bgcolor="orange">1</td>
@@ -163,6 +208,7 @@ Triggers. What are the triggers that connect user actions to changes of state in
         <h5>
             This chart is showing Month end dates with the average number of new cases reported that day and the six days prior. In other words, the seven-day trailing average.
             
+            Mention on the Dates about highest and lowest number of cases
             
             Click on Bars to see average cases by US states for the selected Date in next slide.
         
@@ -173,7 +219,8 @@ Triggers. What are the triggers that connect user actions to changes of state in
 
 
         <div id="svg2header2">
-            <h5 id="svg2header1">Please select Month in slide 1.</h5>
+            <hr>
+            <h4 id="svg2header1">Please select Month in slide 1.</h4>
             <h5 id="svg2title">Click on Bars to see Daily cases in selected Month and US State in next slide.</h5>
             <table id="svg2slideTbl" cellpadding=10>
                 <tr>
@@ -188,8 +235,12 @@ Triggers. What are the triggers that connect user actions to changes of state in
             <svg id="svg2" width="1200" height="500"></svg>
 
             <div id="svg3header2">
-                <h5 id="svg3header1">Please select Month and US State in slide 2.</h5>
-                <h5 id="svg3title">Showing Daily cases in selected Month and US State.</h5>
+                <hr>
+                <h4 id="svg3header1">Please select Month and US State in slide 2.</h4>
+                <h5 id="svg3title">
+                    COVID confirmed cases for the selected month across all US states. The states with high population had high number of COVID cases.     <br>
+                    Chart Showing Daily cases in selected Month and US State.
+                </h5>
                 <table id="svg3slideTbl" cellpadding=10>
                     <tr>
                         <th>Slides: </th>
@@ -206,14 +257,29 @@ Triggers. What are the triggers that connect user actions to changes of state in
         <script>
             var dataset1;
             var dataset2;
+            var showToolTip = true;
 
             document.getElementById("svg2title").style.display = "none";
             document.getElementById("svg3title").style.display = "none";
 
 
             async function init() {
-                dataset1 = await d3.csv("./us.csv", ({date, cases, cases_avg}) => ({date: date,cases: +cases,cases_avg: +cases_avg}))
-                dataset2 = await d3.csv("./us-states.csv", ({date, state, cases, cases_avg, deaths}) => ({date: date,state: state,cases: +cases,cases_avg: +cases_avg,deaths: +deaths}))
+                dataset1 = await d3.csv("./us.csv", ({
+                    date, cases, cases_avg
+                }) => ({
+                    date: date,
+                    cases: +cases,
+                    cases_avg: +cases_avg
+                }))
+                dataset2 = await d3.csv("https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv", ({
+                    date, state, cases, cases_avg, deaths
+                }) => ({
+                    date: date,
+                    state: state,
+                    cases: +cases,
+                    cases_avg: +cases_avg,
+                    deaths: +deaths
+                }))
 
                 adataset1 = [
                     {
@@ -587,6 +653,28 @@ Triggers. What are the triggers that connect user actions to changes of state in
                     //onMouseOver(document.getElementById("#chart1_"+dataset1[maxCasesIndex1].date), maxCasesIndex1)
                     //onMouseClick(document.getElementById("#chart1_"+dataset1[maxCasesIndex1].date), maxCasesIndex1)
                     //onMouseOut(document.getElementById("#chart1_"+dataset1[maxCasesIndex1].date), maxCasesIndex1)
+
+                //                if (showToolTip){
+                //                    for(i=0;i<dataset1.length;i++){
+                //                        var barData = d3.select("#chart1_"+dataset1[i].date)
+                //                        barData
+                //                        .transition()
+                //                        .duration(500)
+                //                        .attr('width', x.bandwidth() + 5)
+                //                        .attr("y", y(dataset1[i].cases_avg) - 10)
+                //                        .attr("height", height - y(dataset1[i].cases_avg) + 10);
+                //                        
+                //                        barData
+                //                            .transition()
+                //                            .duration(500)
+                //                            .attr('width', x.bandwidth())
+                //                            .attr("y", y(dataset1[i].cases_avg))
+                //                            .attr("height", height - y(dataset1[i].cases_avg));
+                //
+                //                    }
+                //                    
+                //                }
+
             }
 
 
@@ -1021,6 +1109,7 @@ Triggers. What are the triggers that connect user actions to changes of state in
             document.getElementById("firstElement").scrollIntoView();
         </script>
     </div>
+    <hr>
     <h4 align="center">Interactive Slideshow Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
 </body>
 
