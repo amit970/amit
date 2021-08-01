@@ -3,24 +3,6 @@
 <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/1.12.1/d3-annotation.min.js"></script>
-    <script>
-    format = function date2str(x, y) {
-        var z = {
-            M: x.getMonth() + 1,
-            d: x.getDate(),
-            h: x.getHours(),
-            m: x.getMinutes(),
-            s: x.getSeconds()
-        };
-        y = y.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
-            return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
-        });
-
-        return y.replace(/(y+)/g, function(v) {
-            return x.getFullYear().toString().slice(-v.length)
-        });
-    }
-    </script>
     <title>Test - Amit</title>
     <style>
         .bar {
@@ -262,7 +244,7 @@
                 .attr("class", "title")
                 .text("Cases in US")
 
-            var x = d3.scaleBand().range([0, width]).padding(0.4),
+            var x = d3.scaleBand().range([0, width]).padding(0.6),
                 y = d3.scaleLinear().range([height, 0]);
 
             var g = svg1.append("g")
@@ -485,7 +467,7 @@
                 .attr("class", "title")
                 .text("Average Cases in US States on " + selectedDate)
 
-            var x = d3.scaleBand().range([0, width]).padding(0.4),
+            var x = d3.scaleBand().range([0, width]).padding(0.6),
                 y = d3.scaleLinear().range([height, 0]);
 
             var g = svg1.append("g")
@@ -706,6 +688,16 @@
         
         function chart3(selectedDate, selectedState) {
             //const dataset1 = d3.csv("./us-states.csv")
+            stateDataset = dataset2
+            stateDataset = stateDataset.filter( function( el ) {
+                //console.log(el)
+                cond = ((el.state == selectedState) &&
+                         (el.date.substring(0,4) == selectedDate.substring(0,4)) && 
+                         (el.date.substring(5,7) == selectedDate.substring(5,7)));
+                //console.log("State:"+el.state+", Year:"+el.date.substring(0,4)+", Month:"+el.date.substring(5,7)+", Include:"+ cond)
+                  return cond;
+                } );
+            //console.log("stateDataset:"+stateDataset)
             var svg1 = d3.select("#svg3");
             svg1.html("");
             margin = 250;
@@ -717,7 +709,7 @@
                 .attr("x", 150).attr("y", 50)
                 .attr("font-size", "20px")
                 .attr("class", "title")
-                .text("Average Cases for US State: " + selectedState)
+                .text("Average Cases for " + selectedState +" in "+ selectedDate.substring(0,8))
 
             var x = d3.scaleBand().range([0, width]).padding(0.4),
                 y = d3.scaleLinear().range([height, 0]);
@@ -725,21 +717,21 @@
             var g = svg1.append("g")
                 .attr("transform", "translate(100,100)");
 
-            x.domain(dataset2.map(function (d) {
+            x.domain(stateDataset.map(function (d) {
                 return d.date;
             }));
-            y.domain([0, d3.max(dataset2, function (d) {
-                return (d.state == selectedState) ? d.cases : 0;
+            y.domain([0, d3.max(stateDataset, function (d) {
+                return d.cases;
             })]);
 
             temp_d = ""
-            for (i=0; i < dataset2.length;i++){
-                if (dataset2[i].state == selectedState){
+            for (i=0; i < stateDataset.length;i++){
+                if (stateDataset[i].state == selectedState){
                     temp_d += dataset2[i].cases + ", ";
                 }
             }
             console.log(temp_d);
-            console.log(d3.max(dataset2, function (d) {return (d.state == selectedState) ? d.cases : 0;}));
+            console.log(d3.max(stateDataset, function (d) {return (d.state == selectedState) ? d.cases : 0;}));
             g.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x))
@@ -773,7 +765,7 @@
                 .call(d3.axisLeft(y))
 
             g.selectAll(".bar")
-                .data(dataset2)
+                .data(stateDataset)
                 .enter()
                 .append("rect")
                 .filter(function(d) { return (d.state == selectedState) })
@@ -858,7 +850,7 @@
                 console.log("Selected:" + d.date);
                 console.log("Selected:" + i);
                 selectedIndex_svg1 = i
-                console.log(dataset2[i])
+                console.log(stateDataset[i])
             }
             
             
@@ -867,13 +859,13 @@
             minCasesIndex = 0
             //maxCasesDate = ""
             //max
-            for(i=0;i<dataset2.length;i++){
-                if (dataset2[i].state == selectedState){
+            for(i=0;i<stateDataset.length;i++){
+                if (stateDataset[i].state == selectedState){
                 //console.log(dataset1[i])
-                if (dataset2[i].cases > dataset2[maxCasesIndex].cases){
+                if (stateDataset[i].cases > stateDataset[maxCasesIndex].cases){
                     maxCasesIndex = i;
                 }
-                if (dataset2[i].cases < dataset2[minCasesIndex].cases){
+                if (stateDataset[i].cases < stateDataset[minCasesIndex].cases){
                     minCasesIndex = i;
                 }
             }
@@ -882,13 +874,13 @@
             console.log("Minimum cases Index:"+ minCasesIndex);
             
             svg1.selectAll("rect")
-            .attr("class", function(d){ return (d.date == dataset2[maxCasesIndex].date) ? "tallestbar" : (d.date == dataset2[minCasesIndex].date)? "smallestbar":"bar"  })
+            .attr("class", function(d){ return (d.date == stateDataset[maxCasesIndex].date) ? "tallestbar" : (d.date == stateDataset[minCasesIndex].date)? "smallestbar":"bar"  })
          
          // Features of the annotation
             const annotations = [
               {
                 note: {
-                  title: "Maximum Cases:" + dataset2[maxCasesIndex].cases,
+                  title: "Maximum Cases:" + stateDataset[maxCasesIndex].cases,
                   //label: "Annotation title",
                   //align: "middle",  // try right or left
                   wrap: 200,  // try something smaller to see text split in several lines
@@ -897,14 +889,14 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset2[maxCasesIndex].date) + 115 ,
-                y: y(dataset2[maxCasesIndex].cases)+85,
+                x: x(stateDataset[maxCasesIndex].date) + 115 ,
+                y: y(stateDataset[maxCasesIndex].cases)+85,
                 dy: -40,
                 dx: 40
               },
                 {
                 note: {
-                  title: "Minimum Cases:"+dataset2[minCasesIndex].cases,
+                  title: "Minimum Cases:"+stateDataset[minCasesIndex].cases,
                   //title: "Annotation title",
                   //align: "middle",  // try right or left
                   wrap: 200,  // try something smaller to see text split in several lines
@@ -913,8 +905,8 @@
                 className: "anomaly",
                 type: d3.annotationCalloutElbow,
     connector: { end: "arrow" },
-                x: x(dataset2[minCasesIndex].date) + 115 ,
-                y: y(dataset2[minCasesIndex].cases)+85,
+                x: x(stateDataset[minCasesIndex].date) + 115 ,
+                y: y(stateDataset[minCasesIndex].cases)+85,
                 dy: -40,
                 dx: 40
               }
