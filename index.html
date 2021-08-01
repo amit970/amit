@@ -229,8 +229,11 @@
                   return monthendDates.includes( el.date );
                 } );
               
-              //console.log(dataset1)
-              //console.log(dataset1[0].date)
+                excludeStates = ["Northern Mariana Islands", "Guam","Virgin Islands"]
+                dataset2 = dataset2.filter( function( el) {
+                    return  !excludeStates.includes(el.state );
+                });
+            
               
               var svg1 = d3.select("#svg1");
             margin = 250;
