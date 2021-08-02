@@ -126,19 +126,19 @@
 
 <body onload='init()'>
     <font size="6" color="#1c87c9" face="arial"><b><div id="firstElement" align="center">COVID Data From March 2020 till July 2021</div></b></font>
-    <h4 align="center">Interactive Slideshow Narrative Visualtion Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
+    <h4 align="center">Interactive Slideshow Narrative Visualization Created by Amit Agrawal(amita3@illinois.edu) CS416 Summer 2021</h4>
     <br> This page is using 2 different sets of COVID data available on github.
     <br>
     <ul>
         <li>Dataset 1 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us.csv</a> - This has rolling average COVID data for USA.</li>
-        <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in USA.</li>
+        <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in the USA.</li>
     </ul>
     Both the datasets are stored locally on github along with this webpage. HTTP calls to the above link was blocked by CORS policy and to overcome it, I stored a local copy of the data along with the webpage.
     <br> <u>NOTE:</u> 1) The US territories "Northern Mariana Islands", "Guam", "Virgin Islands" do not have good COVID data so they have been excluded from the datasets across all scenes. 2) Rolling average is calculated as the number of new cases reported that day and the six days prior. In other words, the seven-day trailing average.
     <p>
         <font size="6" color="#1c87c9" face="arial"><b>Message</b></font>
 
-        <br> The charts on the slides are showing confirmed cases in 2020 and 2021. The aim here is to provide a way to user to slice &amp; dice the data to make it easy for them to figure out e.g. The time period when COVID cases were rising in USA OR the time period, when it was declining? Some states had very low number of cases where as some states like California, New York had huge spike. Chart shows the states, there were doing better in managing the COVID situation and which one was doing worse.
+        <br> The charts on the slides are showing confirmed cases in 2020 and 2021. The aim here is to provide a way to user to slice &amp; dice the data to make it easy for them to figure out e.g. The time period when COVID cases were rising in the USA OR the time period, when it was declining? Some states had very low number of cases where as some states like California, New York had huge spike. Chart shows the states, there were doing better in managing the COVID situation and which one was doing worse.
         <br>
         <br>For Slide 2 and 3, same dataset is being used but it is sliced &amp; diced in a different way to perform 2 different analysis. Data is filtered on the fly for the selected month end date which shows in that month, what was the average number of cases across US states. Then using same dataset, data is filtered on the fly for the selected year &amp; month and the selected state, showing the daily number of covid cases in that state. We can observe some big spikes are during holidays e.g. Christmas, where people may be meeting in gatherings.
     </p>
@@ -161,7 +161,7 @@
     <br><font size="6" color="#1c87c9" face="arial"><b>Scene</b></font>
     <br> There are 3 scenes or slides. The first slide is showing the average number of cases for USA by month end dates and then ability to analyze data across US states. Showing data at country level give a quick overview on covid cases that in which time period numbers were rising or declining or were flat. At any time, User can switch between scenes/slides and choose a different data point for further analysis.
     <ul>
-        <li><b>Scene 1</b> :- It shows average number of COVID cases by month end dates. X axis of the bar chart has month end dates and y-axis has monthly average cases. In USA, Which month end has highest rolling average? High number of confirmed cases shows the time period when COVID situation was worse and low number of cases shows the period when number of confirmed cases were declining.
+        <li><b>Scene 1</b> :- It shows average number of COVID cases by month end dates. X axis of the bar chart has month end dates and y-axis has monthly average cases. in the USA, Which month end has highest rolling average? High number of confirmed cases shows the time period when COVID situation was worse and low number of cases shows the period when number of confirmed cases were declining.
             <br>Note the increase in number of cases in July 2021 which may be due to Delta variant.</li>
         <li><b>Scene 2</b> :- For the selected month in Slide 1, it shows the average number of confirmed cases across all US States. Some states had very low numer where as some states like California, New York had huge spike. We can depict which state was doing better in managing the COVID situation and which one was doing worse. User can select a state here to see daily data for that month.</li>
         <li><b>Scene 3</b> :- For the selected month and selected US state in slide 2, <b>daily</b> confirmed cases are displayed. It depicts the rise or fall in COVID cases in the selected month and US state. With the daily data for a state, one can depict the situation of COVID in that state i.e. on the rise or flat or decline.
@@ -170,7 +170,7 @@
 
     <p>
         <br><font size="6" color="#1c87c9" face="arial"><b>Annotations</b></font>
-        <br> In this narration, we have 3 scenes with consistent anntations. All 3 scenes are showing the highest and lowest number of COVID cases with annotations. It quickly brings user's attention to those data points. Besides that, the color of the bar is also made different. If a different selection is made, the highest and lowest annotations are re-displayed according to the latest selection.
+        <br> In this narration, we have 3 scenes with consistent annotations. All 3 scenes are showing the highest and the lowest number of COVID cases with annotations. It quickly brings user's attention to those data points. Besides that, the color of the bar is also made different. If a different selection is made, the highest and lowest annotations are re-displayed according to the latest selection.
         <br> On scrolling over the bars, the actual data point value is being displayed over the bar as tooltip/text.
 
 
@@ -187,9 +187,9 @@
     </p>
     <p>
         <br><font size="6" color="#1c87c9" face="arial"><b>Triggers</b></font>
-        <br> In Scene 1 and Scene 2, user can click on bars to make a selection. After the selection, users is automatically progressed to next scene i.e. if user selects a date in Scene 1, then user is progressed to Scene 2 automtically. The data point selection or click is a triggering action. Similarly, in Scene 2, after state selection, user is progressed ot Scene 3.
+        <br> In Scene 1 and Scene 2, user can click on bars to make a selection. After the selection, users is automatically progressed to next scene i.e. if user selects a date in Scene 1, then user is progressed to Scene 2 automtically. The data point selection or mouse click is a triggering action. Similarly, in Scene 2, after state selection, user progresses to Scene 3.
         <br>
-        <br>All Scene/Slide numbers are displayed in each scenes. User can click on the scene number to go back and forth between scenes.
+        <br>All Scene/Slide numbers are displayed in each scene. User can click on the scene number to go back and forth between scenes.
 
 
     </p>
