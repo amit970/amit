@@ -134,7 +134,7 @@
         <li>Dataset 2 :- <a href="https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/rolling-averages/us-states.csv</a> - This has rolling average data for each states in USA.</li>
     </ul>
     Both the datasets are stored locally on github along with this webpage. HTTP calls to the above link was blocked by CORS policy and to overcome it, I stored a local copy of the data along with the webpage.
-    <br> NOTE: The US territories "Northern Mariana Islands", "Guam", "Virgin Islands" do not have good data so they have been excluded from the datasets across all scenes.
+    <br> NOTE: 1) The US territories "Northern Mariana Islands", "Guam", "Virgin Islands" do not have good data so they have been excluded from the datasets across all scenes. 2) Rolling average is calculated as the number of new cases reported that day and the six days prior. In other words, the seven-day trailing average.
     <p>
         <font size="6" color="#1c87c9" face="arial"><b>Message</b></font>
         <br> What is the message you are trying to communicate with the narrative visualization?
